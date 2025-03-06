@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int N, target;
+    scanf("%d", &N);
+    int nums[N];
+    for (int i = 0; i < N; i++) {
+        scanf("%d", &nums[i]);
+    }
+    scanf("%d", &target);
+    int hashMapSize = 1000000;
+    int offset = 500000;  
+    int hashMap[hashMapSize];
+    for (int i = 0; i < hashMapSize; i++) {
+        hashMap[i] = -1;  
+    }
+    for (int i = 0; i < N; i++) {
+        int complement = target - nums[i];
+        int hashIndex = complement + offset;
+        if (hashIndex >= 0 && hashIndex < hashMapSize && hashMap[hashIndex] != -1) {
+            printf("%d %d\n", hashMap[hashIndex], i);
+            return 0;  
+        }
+        hashMap[nums[i] + offset] = i;
+    }
+    return 0;
+}
+
