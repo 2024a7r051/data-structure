@@ -1,0 +1,35 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int N, val;
+    scanf("%d", &N);
+    int *nums = (int *)malloc(N * sizeof(int));
+    if (nums == NULL) {  
+        printf("Memory allocation failed!\n");
+        return 1;  
+    }
+
+    for (int i = 0; i < N; i++) {
+        scanf("%d", &nums[i]);
+    }
+
+    scanf("%d", &val);
+    int k = 0;
+
+    for (int i = 0; i < N; i++) {
+        if (nums[i] != val) {
+            nums[k] = nums[i];
+            k++;
+        }
+    }
+    for (int i = 0; i < k; i++) {
+        printf("%d ", nums[i]);
+    }
+    printf("\n");
+
+    free(nums);
+
+    return 0;
+}
+
